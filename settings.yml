@@ -1,0 +1,9 @@
+localFolder: 'backup'
+
+sources:
+  - title: github
+    hoster: github
+    type: org
+    name: team
+    authName: username
+    password: password
