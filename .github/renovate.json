@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "rebaseWhen": "behind-base-branch",
+  "separateMultipleMajor": true,
+  "enabledManagers": [
+    "github-actions",
+    "dockerfile"
+  ],
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "commitMessagePrefix": "chore(deps)[github-actions]:",
+      "additionalReviewers": [
+        "team:sre"
+      ]
+    },
+    {
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "commitMessagePrefix": "chore(deps)[dockerfile]:",
+      "additionalReviewers": [
+        "team:sre"
+      ]
+    }
+  ]
+}
