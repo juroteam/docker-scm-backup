@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.19
 
 ARG YQ_VERSION=4.18.1
 ARG SCM_VERSION=1.7.0
