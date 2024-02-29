@@ -14,7 +14,10 @@ WORKDIR ${SCM_ROOT}
 
 RUN apk add --no-cache \
        bash curl git \
-    && apk add pixz --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+    && apk add pixz \
+    libgcc libintl libssl3 \
+    libstdc++ zlib curl git \
+    --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
     # Install dotnet runtime
     && curl -fsL -o ${DOTNET_FILE} https://download.visualstudio.microsoft.com/download/pr/e94c26b7-6ac0-46b9-81f1-e008ce8348cb/41d57ffacf3e151de8039ec3cd007a68/${DOTNET_FILE} \
     && echo "${DOTNET_FILE_SHA512}  ${DOTNET_FILE}" > ${DOTNET_FILE}.sha512 \
@@ -34,3 +37,6 @@ COPY settings.yml .
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["entrypoint.sh"]
+
+
+
