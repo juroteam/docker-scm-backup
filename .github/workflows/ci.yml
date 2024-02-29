@@ -38,6 +38,7 @@ jobs:
         uses: docker/build-push-action@v4
         env:
           DOCKERHUB_NAMESPACE: juroapp
+          APP_NAME: scm-backup
         with:
           file: Dockerfile
           context: .
@@ -45,5 +46,5 @@ jobs:
           cache-to: type=gha,scope=${{ github.workflow }}
           cache-from: type=gha,scope=${{ github.workflow }}
           tags: |
-            ${{ env.DOCKERHUB_NAMESPACE }}/${{ secrets.APP_NAME }}:${{ steps.set-version.outputs.version }}
-            ${{ env.DOCKERHUB_NAMESPACE }}/${{ secrets.APP_NAME }}:latest
+            ${{ env.DOCKERHUB_NAMESPACE }}/${{ env.APP_NAME }}:${{ steps.set-version.outputs.version }}
+            ${{ env.DOCKERHUB_NAMESPACE }}/${{ env.APP_NAME }}:latest
