@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3.18
 
 ARG YQ_VERSION=4.42.1
 ARG SCM_VERSION=1.7.1
@@ -15,7 +15,7 @@ WORKDIR ${SCM_ROOT}
 RUN apk add --no-cache \
        bash curl git \
     && apk add pixz \
-    libgcc libintl libssl3 \
+    libgcc libintl libssl1.1 \
     libstdc++ zlib curl git \
     --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
     # Install dotnet runtime
