@@ -6,17 +6,18 @@ set -eu
 : "${GH_PASS:?GH_PASS is required}"
 : "${SCM_LOCAL_FOLDER:?SCM_LOCAL_FOLDER is required}"
 
+# Base configuration
 yq e -i '
   .localFolder = env(SCM_LOCAL_FOLDER)
   | with(.sources[] | select(.title == "github");
       .name = env(GH_ORG)
     | .authName = env(GH_USER)
   )
-  | if has("S3_BUCKET") then
-      .options.backup.s3BucketName = env(S3_BUCKET)
-    else
-      .
-    end
 ' settings.yml
+
+# Add S3 configuration if S3_BUCKET is provided
+if [ -n "${S3_BUCKET:-}" ]; then
+  yq e -i '.options.backup.s3BucketName = env(S3_BUCKET)' settings.yml
+fi
 
 exec dotnet ScmBackup.dll
