@@ -1,8 +1,22 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
-yq e -i '(.sources[] | select(.title == "github").name) = env(GH_ORG)' settings.yml
-yq e -i '(.sources[] | select(.title == "github").authName) = env(GH_USER)' settings.yml
-yq e -i '(.sources[] | select(.title == "github").password) = env(GH_PASS)' settings.yml
+: "${GH_ORG:?GH_ORG is required}"
+: "${GH_USER:?GH_USER is required}"
+: "${GH_PASS:?GH_PASS is required}"
+: "${SCM_LOCAL_FOLDER:?SCM_LOCAL_FOLDER is required}"
+
+yq e -i '
+  .localFolder = env(SCM_LOCAL_FOLDER)
+  | with(.sources[] | select(.title == "github");
+      .name = env(GH_ORG)
+    | .authName = env(GH_USER)
+  )
+  | if has("S3_BUCKET") then
+      .options.backup.s3BucketName = env(S3_BUCKET)
+    else
+      .
+    end
+' settings.yml
 
 exec dotnet ScmBackup.dll

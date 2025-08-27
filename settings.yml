@@ -1,4 +1,4 @@
-localFolder: 'backup'
+localFolder: backup
 
 sources:
   - title: github
@@ -6,4 +6,4 @@ sources:
     type: org
     name: team
     authName: username
-    password: password
+    password: '%GH_PASS%'
