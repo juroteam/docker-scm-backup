@@ -16,6 +16,8 @@ To run this project, you will need the following environment variables
 **Optional:**
 `S3_BUCKET` - If provided, backups will be configured to use S3 storage
 
+> **Note:** When using S3 backup, you are responsible for configuring AWS authentication (credentials, IAM roles, etc.) in your Docker environment.
+
 ## Usage/Examples
 
 ```shell
