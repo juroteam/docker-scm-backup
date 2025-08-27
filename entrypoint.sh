@@ -12,6 +12,11 @@ yq e -i '
       .name = env(GH_ORG)
     | .authName = env(GH_USER)
   )
+  | if has("S3_BUCKET") then
+      .options.backup.s3BucketName = env(S3_BUCKET)
+    else
+      .
+    end
 ' settings.yml
 
 exec dotnet ScmBackup.dll
