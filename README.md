@@ -1,4 +1,5 @@
 # Dockerised SCM Backup
+[![GitHub](https://img.shields.io/badge/GitHub-juroteam%2Fdocker--scm--backup-blue?style=flat-square&logo=github)](https://github.com/juroteam/docker-scm-backup)
 
 [SCM Backup](https://scm-backup.org/) in a Docker container. Default configuration is preset to work with Github.
 
@@ -7,6 +8,7 @@
 To run this project, you will need the following environment variables
 
 **Required:**
+
 `GH_ORG`
 
 `GH_USER`
@@ -14,6 +16,7 @@ To run this project, you will need the following environment variables
 `GH_PASS`
 
 **Optional:**
+
 `S3_BUCKET` - If provided, backups will be configured to use S3 storage
 
 > **Note:** When using S3 backup, you are responsible for configuring AWS authentication (credentials, IAM roles, etc.) in your Docker environment.
