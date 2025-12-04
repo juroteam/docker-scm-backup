@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.23
 
 ARG SCM_VERSION=1.10.0
 ARG SCM_FILE=scm-backup-1.10.0.c9d19ac.zip
